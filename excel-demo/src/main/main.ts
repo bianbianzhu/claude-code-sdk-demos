@@ -1,3 +1,4 @@
+import 'dotenv/config';
 /* eslint global-require: off, no-console: off, promise/always-return: off */
 
 /**
@@ -102,12 +103,14 @@ ipcMain.on(
     let initialOutputFiles: string[] = [];
     try {
       if (fs.existsSync(outputDir)) {
-        initialOutputFiles = fs.readdirSync(outputDir).filter(file => {
+        initialOutputFiles = fs.readdirSync(outputDir).filter((file) => {
           // Only include .xlsx and .csv files
           const filePath = path.join(outputDir, file);
           const ext = path.extname(file).toLowerCase();
-          return fs.statSync(filePath).isFile() &&
-                 (ext === '.xlsx' || ext === '.csv');
+          return (
+            fs.statSync(filePath).isFile() &&
+            (ext === '.xlsx' || ext === '.csv')
+          );
         });
       }
     } catch (error) {
@@ -222,8 +225,10 @@ ipcMain.on(
             }
             const filePath = path.join(outputDir, file);
             const ext = path.extname(file).toLowerCase();
-            return fs.statSync(filePath).isFile() &&
-                   (ext === '.xlsx' || ext === '.csv');
+            return (
+              fs.statSync(filePath).isFile() &&
+              (ext === '.xlsx' || ext === '.csv')
+            );
           });
 
           if (newFiles.length > 0) {
