@@ -1,0 +1,66 @@
+{
+  "$schema": "https://claude.ai/settings-schema.json",
+  "description": "Team settings for the Research Agent",
+
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Read",
+      "Glob",
+      "Skill"
+    ],
+    "ask": [
+      "Write",
+      "Task"
+    ],
+    "deny": [
+      "Bash",
+      "Edit",
+      "mcp__*"
+    ]
+  },
+
+  "env": {
+    "DEFAULT_RESEARCH_DEPTH": "comprehensive",
+    "MIN_SOURCES_PER_TOPIC": "3",
+    "MAX_SEARCHES_PER_RESEARCHER": "7",
+    "REPORT_MAX_WORDS": "800"
+  },
+
+  "security": {
+    "auditLogging": true,
+    "auditLogPath": "logs",
+    "redactSecrets": true,
+    "blockedSearchTerms": [
+      "password",
+      "credentials",
+      "private key"
+    ]
+  },
+
+  "research": {
+    "preferredSources": [
+      "academic papers",
+      "official documentation",
+      "reputable news outlets",
+      "industry analyst reports"
+    ],
+    "avoidedSources": [
+      "user-generated content without verification",
+      "outdated sources (>2 years)",
+      "known unreliable domains"
+    ]
+  },
+
+  "model": {
+    "leadAgent": "haiku",
+    "researchers": "haiku",
+    "reportWriter": "haiku"
+  },
+
+  "behavior": {
+    "maxSubagents": 4,
+    "parallelResearch": true,
+    "autoSynthesize": true
+  }
+}
